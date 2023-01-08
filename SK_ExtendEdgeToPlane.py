@@ -93,8 +93,6 @@ class extendEdgeToPlane(lwsdk.ICommandSequence):
             z = p4[2] + t * (p5[2] - p4[2])
             pos = x, y, z
             
-            # distP4 = math.sqrt((x - p4[0])**2 + (y - p4[1])**2 + (z - p4[2])**2)
-            # distP5 = math.sqrt((x - p5[0])**2 + (y - p5[1])**2 + (z - p5[2])**2)
             distP4 = self.get_distance(pos, p4)
             distP5 = self.get_distance(pos, p5)
             
@@ -102,40 +100,6 @@ class extendEdgeToPlane(lwsdk.ICommandSequence):
                 meo.pntMove(meo.state, po4, pos)
             else:
                 meo.pntMove(meo.state, po5, pos)
-                
-            
-    # for (i = 0; i < floor((n - 3)/2); i++)
-    # {
-        # po4 = pointinfo(points[4 + i * 2]);
-        # po5 = pointinfo(points[5 + i * 2]);
-        
-        # t = - (a * po4.x + b * po4.y + c * po4.z + d) / (a * (po5.x - po4.x) + b * (po5.y - po4.y) + c * (po5.z - po4.z));
-        
-        # x = po4.x + t * (po5.x - po4.x);
-        # y = po4.y + t * (po5.y - po4.y);
-        # z = po4.z + t * (po5.z - po4.z);
-        
-        # pointmove(points[5 + i * 2], x, y, z);
-    # }
-    
-    
-        # move up +0.1
-        # for n in range(len(po)):
-            # posBefore = meo.pointPos(meo.state, po[n])
-            # posAfter = posBefore[0], posBefore[1] + 0.1, posBefore[2]
-            # meo.pntMove(meo.state, po[n], posAfter)
-            
-            
-        # eo_r = meo.fastEdgeScan(meo.state,self.fast_edge_scan, (edge,), lwsdk.OPLYR_FG, 1)
-        
-        # for n in range(2):
-            # planePnts.append(meo.edgePoint1(meo.state, edge[n]))
-            # planePnts.append(meo.edgePoint2(meo.state, edge[n]))
-        
-        # po1 = meo.edgePoint1(meo.state, edge[0])
-        # po2 = meo.edgePoint2(meo.state, edge[0])
-        # pos = meo.pointPos(meo.state, po2)
-        # meo.pntMove(meo.state, po1, pos)
             
         meo.done(meo.state, lwsdk.EDERR_NONE, 0)
         mc.undoGroupEnd()
